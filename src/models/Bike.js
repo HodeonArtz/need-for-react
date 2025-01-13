@@ -12,7 +12,7 @@ export default class Bike extends Vehicle {
    * @param {import("./Racetrack.js").default} circuit
    * @returns boolean
    */
-  tryBikeFall(circuit) {
+  setAndTryBikeFall(circuit) {
     let bikeFallPercentage = 0.05;
     const percetagesCasesMap = [
       {
