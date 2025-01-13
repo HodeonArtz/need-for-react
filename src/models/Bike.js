@@ -1,17 +1,19 @@
-import { tryProbability } from "../utils/index.js";
+import { getRandomNumber, tryProbability } from "../utils/index.js";
 import Racetrack from "./Racetrack.js";
 import Vehicle from "./Vehicle";
 
 export default class Bike extends Vehicle {
+  isFallen = false;
+  movementsUntilComback = 0;
+
   constructor(model, traction, minMoves, maxMoves) {
     super(model, traction, minMoves, maxMoves);
-    this.isFallen = false;
   }
 
   /**
    * @param {import("./Racetrack.js").default} circuit
    * @returns boolean
-   */ // PASS THIS METHOD TO DRIVER
+   */
   setAndTryBikeFall(circuit) {
     let bikeFallPercentage = 0.05;
     const percetagesCasesMap = [
@@ -41,11 +43,32 @@ export default class Bike extends Vehicle {
     });
 
     this.isFallen = true;
+    this.movementsUntilComback = 5;
 
     return tryProbability(bikeFallPercentage);
   }
 
-  getNextMove() {
-    if (this.isFallen) return 0;
+  accelerateAndGetMoves() {
+    if (this.isFallen) {
+      if (this.movementsUntilComback <= 5 && this.movementsUntilComback > 0)
+        this.movementsUntilComback--;
+      if (this.movementsUntilComback === 0) this.isFallen = false;
+      return 0;
+    }
+
+    const movesMap = [
+      { traction: Vehicle.TRACTION.hard, extraMoves: 5 },
+      { traction: Vehicle.TRACTION.medium, extraMoves: 2 },
+    ];
+
+    let moves = getRandomNumber(this.minMoves, this.maxMoves);
+
+    movesMap.forEach((moveCase) => {
+      if (moveCase.traction === this.traction) {
+        moves += moveCase.extraMoves;
+      }
+    });
+
+    return moves;
   }
 }

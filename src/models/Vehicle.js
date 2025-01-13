@@ -18,7 +18,7 @@ export default class Vehicle {
     this.maxMoves = maxMoves;
   }
 
-  getNextMove() {
+  accelerateAndGetMoves() {
     return 1;
   }
 }
