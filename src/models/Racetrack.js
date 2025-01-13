@@ -8,11 +8,11 @@ export default class Racetrack {
    *
    * @param {string} name Racetrack name.
    * @param {"rainy"|"wet"|"dry"} weather Racectrack weather: Rainy, wet or dry
-   * @param {number} trackLength length in movements
+   * @param {number} trackLengthKm length in movements * 15
    */
-  constructor(name, weather, trackLength) {
+  constructor(name, weather, trackLengthKm) {
     this.name = name;
     this.weather = weather;
-    this.trackLength = trackLength;
+    this.trackLengthKm = trackLengthKm * 15;
   }
 }
