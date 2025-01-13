@@ -11,7 +11,7 @@ export default class Bike extends Vehicle {
   /**
    * @param {import("./Racetrack.js").default} circuit
    * @returns boolean
-   */
+   */ // PASS THIS METHOD TO DRIVER
   setAndTryBikeFall(circuit) {
     let bikeFallPercentage = 0.05;
     const percetagesCasesMap = [
@@ -43,5 +43,9 @@ export default class Bike extends Vehicle {
     this.isFallen = true;
 
     return tryProbability(bikeFallPercentage);
+  }
+
+  getNextMove() {
+    if (this.isFallen) return 0;
   }
 }
