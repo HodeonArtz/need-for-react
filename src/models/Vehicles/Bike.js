@@ -1,5 +1,5 @@
-import { getRandomNumber, tryProbability } from "../utils/index.js";
-import Racetrack from "./Racetrack.js";
+import { tryProbability, getRandomNumber } from "../../utils";
+import { percentagesCasesMap } from "./percentagesCasesMap.js";
 import Vehicle from "./Vehicle";
 
 export default class Bike extends Vehicle {
@@ -11,30 +11,13 @@ export default class Bike extends Vehicle {
   }
 
   /**
-   * @param {import("./Racetrack.js").default} circuit
+   * @param {import("../Racetrack.js").default} circuit
    * @returns boolean
    */
   setAndTryBikeFall(circuit) {
     let bikeFallPercentage = 0.05;
-    const percetagesCasesMap = [
-      {
-        weather: Racetrack.WEATHER.rainy,
-        traction: Vehicle.TRACTION.hard,
-        percentage: 0.3,
-      },
-      {
-        weather: Racetrack.WEATHER.wet,
-        traction: Vehicle.TRACTION.hard,
-        percentage: 0.2,
-      },
-      {
-        weather: Racetrack.WEATHER.wet,
-        traction: Vehicle.TRACTION.medium,
-        percentage: 0.1,
-      },
-    ];
 
-    percetagesCasesMap.forEach((percetageCase) => {
+    percentagesCasesMap.forEach((percetageCase) => {
       if (
         percetageCase.weather === circuit.weather &&
         percetageCase.traction === this.traction
@@ -56,14 +39,14 @@ export default class Bike extends Vehicle {
       return 0;
     }
 
-    const movesMap = [
+    const movesConditionsMap = [
       { traction: Vehicle.TRACTION.hard, extraMoves: 5 },
       { traction: Vehicle.TRACTION.medium, extraMoves: 2 },
     ];
 
     let moves = getRandomNumber(this.minMoves, this.maxMoves);
 
-    movesMap.forEach((moveCase) => {
+    movesConditionsMap.forEach((moveCase) => {
       if (moveCase.traction === this.traction) {
         moves += moveCase.extraMoves;
       }
