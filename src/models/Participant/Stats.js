@@ -1,11 +1,11 @@
 export default class Stats {
   history = [0, 0, 0, 0];
-  constructor([
+  constructor(
     firstPlaces = 0,
     secondPlaces = 0,
     thirdPlaces = 0,
-    otherPlaces = 0,
-  ]) {
+    otherPlaces = 0
+  ) {
     this.history = [firstPlaces, secondPlaces, thirdPlaces, otherPlaces];
   }
   set finalPlace(positionResult) {
@@ -24,5 +24,9 @@ export default class Stats {
   }
   get otherPlaces() {
     return this.history[3];
+  }
+
+  resetStats() {
+    this.history = [0, 0, 0, 0];
   }
 }
