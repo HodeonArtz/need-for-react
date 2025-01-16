@@ -1,3 +1,5 @@
+import { getRandomNumber } from "../../utils";
+
 export default class Vehicle {
   static TRACTION = {
     soft: "soft",
@@ -19,6 +21,6 @@ export default class Vehicle {
   }
 
   accelerateAndGetMoves() {
-    return 1;
+    return getRandomNumber(this.minMoves, this.maxMoves);
   }
 }

@@ -1,14 +1,10 @@
-import { tryProbability, getRandomNumber } from "../../utils";
+import { tryProbability } from "../../utils";
 import { percentagesCasesMap } from "./percentagesCasesMap.js";
 import Vehicle from "./Vehicle";
 
 export default class Bike extends Vehicle {
   isFallen = false;
   movementsUntilComback = 0;
-
-  constructor(model, traction, minMoves, maxMoves) {
-    super(model, traction, minMoves, maxMoves);
-  }
 
   /**
    * @param {import("../Racetrack.js").default} circuit
@@ -44,7 +40,7 @@ export default class Bike extends Vehicle {
       { traction: Vehicle.TRACTION.medium, extraMoves: 2 },
     ];
 
-    let moves = getRandomNumber(this.minMoves, this.maxMoves);
+    let moves = super.accelerateAndGetMoves();
 
     movesConditionsMap.forEach((moveCase) => {
       if (moveCase.traction === this.traction) {

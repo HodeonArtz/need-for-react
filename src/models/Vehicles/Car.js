@@ -3,10 +3,6 @@ import { carMovesConditionsMap } from "./carMovesConditionsMap.js";
 import Vehicle from "./Vehicle";
 
 export default class Car extends Vehicle {
-  constructor(model, traction, minMoves, maxMoves) {
-    super(model, traction, minMoves, maxMoves);
-  }
-
   /**
    * @param {import("../Racetrack.js").default} circuit
    * @returns boolean
