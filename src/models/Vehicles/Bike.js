@@ -1,6 +1,6 @@
 import { tryProbability } from "../../utils";
 import { percentagesCasesMap } from "./percentagesCasesMap.js";
-import Vehicle from "./Vehicle";
+import Vehicle from "./Vehicle.js";
 
 export default class Bike extends Vehicle {
   isFallen = false;
