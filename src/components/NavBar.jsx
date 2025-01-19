@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <Container>
       <Flex>
-        <Heading as="h5" className="logo uppercase bg-white">
+        <Heading as="h5" className="logo uppercase select-none">
           <Link to="/">Need For React</Link>
         </Heading>
       </Flex>
