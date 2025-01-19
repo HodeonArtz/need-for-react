@@ -1,3 +1,4 @@
+import { Container } from "@mantine/core";
 import NavBar from "./components/NavBar";
 import { Outlet } from "react-router-dom";
 
@@ -6,7 +7,9 @@ const Layout = () => {
     <>
       <NavBar />
       <main className="prose p-5">
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </main>
     </>
   );
