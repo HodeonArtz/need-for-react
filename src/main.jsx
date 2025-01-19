@@ -1,14 +1,17 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import "@radix-ui/themes/styles.css";
-import Layout from "./Layout.jsx";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import routes from "./routes.jsx";
 import Providers from "./Providers.jsx";
+
+const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Providers>
-      <Layout />
+      <RouterProvider router={router} />
     </Providers>
   </StrictMode>
 );

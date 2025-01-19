@@ -1,3 +1,11 @@
+@import url("./assets/fonts/switzer/css/switzer.css");
+@import url("./assets/fonts/panchang/css/panchang.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.radix-themes {
+  --default-font-family: Switzer-Variable;
+  --heading-font-family: Panchang-Extrabold;
+}
