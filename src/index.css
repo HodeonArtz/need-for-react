@@ -9,3 +9,13 @@
   --default-font-family: Switzer-Variable;
   --heading-font-family: Panchang-Extrabold;
 }
+
+a {
+  text-decoration: inherit;
+}
+
+.logo {
+  a {
+    color: inherit;
+  }
+}

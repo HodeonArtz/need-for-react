@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <Container className="bg-">
+    <Container>
       <Flex>
-        <Heading as="h5">
+        <Heading as="h5" className="logo uppercase bg-white">
           <Link to="/">Need For React</Link>
         </Heading>
       </Flex>
