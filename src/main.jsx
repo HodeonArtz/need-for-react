@@ -1,6 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@radix-ui/themes/styles.css";
+import "@mantine/charts/styles.css";
+import "@mantine/core/styles.css";
+
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import routes from "./routes.jsx";

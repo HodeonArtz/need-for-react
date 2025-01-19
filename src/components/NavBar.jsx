@@ -1,14 +1,14 @@
-import { Container, Flex, Heading } from "@radix-ui/themes";
+import { Container, Group, Title } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <Container>
-      <Flex>
-        <Heading as="h5" className="logo uppercase select-none">
-          <Link to="/">Need For React</Link>
-        </Heading>
-      </Flex>
+      <Group>
+        <Title className="uppercase">
+          <Link>NFR</Link>
+        </Title>
+      </Group>
     </Container>
   );
 };

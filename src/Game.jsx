@@ -1,7 +1,5 @@
-import { Container } from "@radix-ui/themes";
-
 const Game = () => {
-  return <Container>Game</Container>;
+  return <h1>Game</h1>;
 };
 
 export default Game;

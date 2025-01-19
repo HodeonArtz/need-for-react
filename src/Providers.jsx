@@ -1,7 +1,21 @@
-import { Theme } from "@radix-ui/themes";
+import { createTheme, MantineProvider } from "@mantine/core";
+
+const theme = createTheme({
+  fontFamily: "Switzer-Variable",
+  headings: {
+    fontFamily: "Panchang-Variable",
+    fontWeight: 900,
+  },
+});
 
 const Providers = ({ children }) => {
-  return <Theme appearance="dark">{children}</Theme>;
+  return (
+    <>
+      <MantineProvider theme={theme} forceColorScheme="dark">
+        {children}
+      </MantineProvider>
+    </>
+  );
 };
 
 export default Providers;
