@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import { getRandomNumber } from "../../utils";
 
 export default class Vehicle {
@@ -6,6 +7,8 @@ export default class Vehicle {
     medium: "medium",
     hard: "hard",
   };
+
+  #id;
   /**
    *
    * @param {string} model
@@ -14,6 +17,7 @@ export default class Vehicle {
    * @param {number} maxMoves
    */
   constructor(model, traction, minMoves, maxMoves) {
+    this.#id = v4();
     this.model = model;
     this.traction = traction;
     this.minMoves = minMoves;
@@ -22,5 +26,9 @@ export default class Vehicle {
 
   accelerateAndGetMoves() {
     return getRandomNumber(this.minMoves, this.maxMoves);
+  }
+
+  get id() {
+    return this.#id;
   }
 }

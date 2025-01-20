@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import Stats from "./Stats.js";
 
 /**
@@ -25,6 +26,11 @@ export default class Participant {
     mouthType: "Default",
     skinColor: "Light",
   };
+
+  /**
+   * @type {number}
+   */
+  #id;
   /**
    * Avatar for driver
    *
@@ -35,7 +41,7 @@ export default class Participant {
   /**
    * @type {Vehicle}
    */
-  vehicle;
+  vehicleId;
 
   /**
    * @type {Stats}
@@ -45,14 +51,19 @@ export default class Participant {
   /**
    *
    * @param {string} name
-   * @param {Vehicle | null} vehicle
+   * @param {string | null} vehicle
    * @param {Stats} stats
    * @param {Avatar} avatar
    */
-  constructor(name, avatar, vehicle = null, stats = new Stats()) {
+  constructor(name, avatar, vehicleId = null, stats = new Stats()) {
+    this.#id = v4();
     this.name = name;
-    this.vehicle = vehicle;
+    this.vehicleId = vehicleId;
     this.stats = stats;
     this.avatar = avatar;
+  }
+
+  get id() {
+    return this.#id;
   }
 }
