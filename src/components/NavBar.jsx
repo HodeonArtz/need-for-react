@@ -1,4 +1,4 @@
-import { Container, Divider, Flex, Title } from "@mantine/core";
+import { Box, Container, Divider, Flex, Title } from "@mantine/core";
 import { Link, NavLink } from "react-router-dom";
 
 const Logo = () => {
@@ -11,23 +11,27 @@ const Logo = () => {
 
 const NavBar = () => {
   return (
-    <Container className="box-border">
-      <Flex gap="lg" className="py-3 box-border">
-        <Logo className="box-border" />
-        <Divider orientation="vertical" size="sm" />
-        <Flex
-          align="center"
-          gap="md"
-          fw={500}
-          className=" text-hover-underline"
-        >
-          <NavLink className="font-bold text-2xl">🏁 Play</NavLink>
-          <NavLink>🚗 Vehicles</NavLink>
-          <NavLink>🧑 Drivers</NavLink>
-          <NavLink>🚥 Circuits</NavLink>
+    <Box className="border-b-2">
+      <Container>
+        <Flex gap="lg" className="py-3">
+          <Logo />
+          <Divider orientation="vertical" size="sm" />
+          <Flex
+            align="center"
+            gap="md"
+            fw={500}
+            className=" text-hover-underline"
+          >
+            <NavLink to="/" className="font-bold text-2xl">
+              🏁 Play
+            </NavLink>
+            <NavLink to="/vehicles">🚗 Vehicles</NavLink>
+            <NavLink to="/drivers">🧑 Drivers</NavLink>
+            <NavLink to="/circuits">🚥 Circuits</NavLink>
+          </Flex>
         </Flex>
-      </Flex>
-    </Container>
+      </Container>
+    </Box>
   );
 };
 
