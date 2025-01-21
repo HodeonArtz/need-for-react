@@ -1,5 +1,9 @@
 import { v4 } from "uuid";
 
+/**
+ * @typedef {"rainy"|"wet"|"dry"} Weather
+ */
+
 export default class Racetrack {
   static WEATHER = {
     rainy: "rainy",
@@ -7,15 +11,25 @@ export default class Racetrack {
     dry: "dry",
   };
 
+  /**
+   * @type {string}
+   */
   #id;
 
   /**
-   *
-   * @param {string} name Racetrack name.
-   * @param {"rainy"|"wet"|"dry"} weather Racectrack weather: Rainy, wet or dry
-   * @param {number} trackLengthKm length in movements * 15
+   * @type {string}
    */
-  constructor(name, weather, trackLengthKm) {
+  name;
+
+  /**
+   *
+   */
+  weather;
+
+  /**
+   * @param {{name: string, weather: Weather, trackLengthKm: number}} properties.
+   */
+  constructor({ name, weather, trackLengthKm }) {
     this.#id = v4();
     this.name = name;
     this.weather = weather;

@@ -9,7 +9,7 @@ import Stats from "./Stats.js";
  * @typedef {import("./Stats.js").default} Stats
  */
 
-export default class Participant {
+export default class Driver {
   /**
    * @type {Avatar}
    */
@@ -28,7 +28,7 @@ export default class Participant {
   };
 
   /**
-   * @type {number}
+   * @type {string}
    */
   #id;
   /**
@@ -39,7 +39,7 @@ export default class Participant {
   avatar;
 
   /**
-   * @type {Vehicle}
+   * @type {string | null}
    */
   vehicleId;
 
@@ -49,13 +49,14 @@ export default class Participant {
   stats;
 
   /**
-   *
-   * @param {string} name
-   * @param {string | null} vehicle
-   * @param {Stats} stats
-   * @param {Avatar} avatar
+   * @param {{name: string, avatar?: Avatar, vehicleId?: string | null,stats?: Stats}} properties
    */
-  constructor(name, avatar, vehicleId = null, stats = new Stats()) {
+  constructor({
+    name,
+    avatar = Driver.defaultAvatar,
+    vehicleId = null,
+    stats = new Stats(),
+  }) {
     this.#id = v4();
     this.name = name;
     this.vehicleId = vehicleId;

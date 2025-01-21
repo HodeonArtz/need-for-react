@@ -3,7 +3,14 @@ import { percentagesCasesMap } from "./percentagesCasesMap.js";
 import Vehicle from "./Vehicle.js";
 
 export default class Bike extends Vehicle {
+  /**
+   * @type {boolean}
+   */
   isFallen = false;
+
+  /**
+   * @type {number}
+   */
   movementsUntilComback = 0;
 
   /**
@@ -27,6 +34,9 @@ export default class Bike extends Vehicle {
     return tryProbability(bikeFallPercentage);
   }
 
+  /**
+   * @returns {number}
+   */
   accelerateAndGetMoves() {
     if (this.isFallen) {
       if (this.movementsUntilComback <= 5 && this.movementsUntilComback > 0)
