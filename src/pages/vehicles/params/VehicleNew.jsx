@@ -1,7 +1,7 @@
 import React from "react";
 
-const VehicleCreate = () => {
+const VehicleNew = () => {
   return <div>VehicleCreate</div>;
 };
 
-export default VehicleCreate;
+export default VehicleNew;

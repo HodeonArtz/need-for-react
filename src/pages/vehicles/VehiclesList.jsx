@@ -1,6 +1,6 @@
 import { useEntitiesState } from "../../hooks/useEntitiesState";
 
-const Vehicles = () => {
+const VehiclesList = () => {
   const vehicles = useEntitiesState((s) => s.vehicles);
   return (
     <div>
@@ -11,4 +11,4 @@ const Vehicles = () => {
   );
 };
 
-export default Vehicles;
+export default VehiclesList;
