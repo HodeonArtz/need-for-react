@@ -12,3 +12,10 @@ export function tryProbability(percentage) {
 export function getRandomNumber(min = 0, max = 1) {
   return Math.random() * (max - min) + min;
 }
+
+/**
+ * @param {string} text
+ */
+export function firstLetterUppercase(text) {
+  return `${text[0].toUpperCase()}${text.slice(1)}`;
+}

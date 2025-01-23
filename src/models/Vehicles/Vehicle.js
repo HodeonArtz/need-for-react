@@ -54,6 +54,8 @@ export default class Vehicle {
    * @param {{ model: string, traction: Traction, minMoves: number, maxMoves: number,color: string }} Properties
    */
   constructor({ model, traction, minMoves, maxMoves, color }) {
+    // if(minMoves >=   )
+
     this.#id = v4();
     this.model = model;
     this.traction = traction;
