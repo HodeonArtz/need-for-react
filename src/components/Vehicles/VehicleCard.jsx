@@ -24,7 +24,7 @@ const VehicleCard = ({ vehicle }) => {
         <VehiclePreview vehicle={vehicle} />
       </Card.Section>
       <Group justify="space-between" mt="md" mb="xs">
-        <Title ff={"text"} size="h2">
+        <Title ff={"text"} size="h3">
           {vehicle.model}
         </Title>
         <VehicleDataTable vehicle={vehicle} />

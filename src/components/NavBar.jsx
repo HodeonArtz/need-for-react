@@ -27,7 +27,7 @@ const NavBar = () => {
             </NavLink>
             <NavLink to="/vehicles">🚗 Vehicles</NavLink>
             <NavLink to="/drivers">🧑 Drivers</NavLink>
-            <NavLink to="/circuits">🚥 Circuits</NavLink>
+            <NavLink to="/racetracks">🚥 Circuits</NavLink>
           </Flex>
         </Flex>
       </Container>

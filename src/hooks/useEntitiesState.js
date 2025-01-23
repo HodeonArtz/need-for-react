@@ -20,6 +20,9 @@ export const useEntitiesState = create(
     drivers: [new Driver({ name: "Juan" })],
     vehicles: [...defaultVehicles],
     racetracks: [],
+
+    clearVehicles: () => set(() => ({ vehicles: [] })),
+
     addDriver: (driver) =>
       set((entities) => ({ drivers: [...entities.drivers, driver] })),
     updateDriver: (updatedDriver) =>
