@@ -1,6 +1,3 @@
-import Masonry from "react-layout-masonry";
-import VehicleCard from "../../components/Vehicles/VehicleCard";
-import { useEntitiesState } from "../../hooks/useEntitiesState";
 import {
   ActionIcon,
   Button,
@@ -11,9 +8,12 @@ import {
   Title,
   Tooltip,
 } from "@mantine/core";
-import { IconPlus, IconTrash } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
+import { IconPlus, IconTrash } from "@tabler/icons-react";
+import Masonry from "react-layout-masonry";
+import { Link } from "react-router-dom";
+import VehicleCard from "../../components/Vehicles/VehicleCard";
+import { useEntitiesState } from "../../hooks/useEntitiesState";
 
 const VehiclesList = () => {
   const clearVehicles = useEntitiesState((state) => state.clearVehicles);
