@@ -1,5 +1,8 @@
+import { useParams } from "react-router-dom";
+
 const VehicleEdit = () => {
-  return <div>VehicleEdit</div>;
+  const { id: vehicleId } = useParams();
+  return <div>{vehicleId}</div>;
 };
 
 export default VehicleEdit;

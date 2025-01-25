@@ -14,6 +14,7 @@ import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { useHover } from "@mantine/hooks";
 import { useEntitiesState } from "../../hooks/useEntitiesState";
 import { VehiclePreview } from "./VehiclePreview";
+import { useNavigate } from "react-router-dom";
 
 /**
  * @param {{vehicle: import("../../models/Vehicles/Vehicle").default}} props
@@ -40,6 +41,7 @@ export default VehicleCard;
 
 const VehicleActionButtons = ({ mounted, vehicleId }) => {
   const deleteVehicle = useEntitiesState((s) => s.deleteVehicle);
+  const navigate = useNavigate();
   return (
     <Transition
       mounted={mounted}
@@ -56,7 +58,12 @@ const VehicleActionButtons = ({ mounted, vehicleId }) => {
           style={styles}
         >
           <Tooltip label="Edit vehicle" color="dark" position="left">
-            <ActionIcon variant="default" size="md" aria-label="Gallery">
+            <ActionIcon
+              variant="default"
+              size="md"
+              aria-label="Edit"
+              onClick={() => navigate(`/vehicles/${vehicleId}/edit`)}
+            >
               <IconPencil size={20} stroke={1.5} />
             </ActionIcon>
           </Tooltip>
@@ -66,7 +73,7 @@ const VehicleActionButtons = ({ mounted, vehicleId }) => {
               color="red"
               variant="filled"
               size="md"
-              aria-label="Settings"
+              aria-label="Delete"
               onClick={() => deleteVehicle(vehicleId)}
             >
               <IconTrash size={20} stroke={1.5} />
