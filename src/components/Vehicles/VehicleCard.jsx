@@ -88,8 +88,8 @@ const VehicleActionButtons = ({ mounted, vehicleId }) => {
 
           <Tooltip label="Delete vehicle" color="red" position="left">
             <ActionIcon
-              c="red"
-              variant="default"
+              color="red"
+              variant="filled"
               size="md"
               aria-label="Settings"
               onClick={() => deleteVehicle(vehicleId)}
