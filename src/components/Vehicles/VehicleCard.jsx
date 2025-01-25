@@ -84,6 +84,7 @@ const VehicleActionButtons = ({ mounted, vehicleId }) => {
           </ActionIcon>
 
           <ActionIcon
+            c="red"
             variant="default"
             size="md"
             aria-label="Settings"
