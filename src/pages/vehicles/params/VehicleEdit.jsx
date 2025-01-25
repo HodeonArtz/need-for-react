@@ -1,8 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEntitiesState } from "../../../hooks/useEntitiesState";
+import VehicleFormScreen from "../../../components/Vehicles/VehicleFormScreen";
 
 const VehicleEdit = () => {
+  const navigate = useNavigate();
+
   const { id: vehicleId } = useParams();
-  return <div>{vehicleId}</div>;
+  const vehicles = useEntitiesState((s) => s.vehicles);
+  const foundVehicle = vehicles.find((vehicle) => vehicle.id === vehicleId);
+  if (!foundVehicle) {
+    navigate("/");
+    return null;
+  }
+  return <VehicleFormScreen vehicleToEdit={foundVehicle} />;
 };
 
 export default VehicleEdit;

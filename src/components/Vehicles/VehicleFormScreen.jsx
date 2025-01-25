@@ -14,7 +14,7 @@ import { IconArrowLeft, IconCar, IconMotorbike } from "@tabler/icons-react";
 
 import "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Bike, Car, Vehicle } from "../../../models";
+import { Bike, Car, Vehicle } from "../../models";
 import { colorSwatch, firstLetterUppercase, getRandomColor } from "../../utils";
 import Labeler from "../../components/Labeler";
 import backgroundVehicle from "../../assets/png/background-landscape.png";
@@ -24,17 +24,32 @@ import { useForm, zodResolver } from "@mantine/form";
 import { vehicleFormSchema } from "../../schemas/vehicleFormValidation";
 import { useEntitiesState } from "../../hooks/useEntitiesState";
 
-const VehicleNew = () => {
+/**
+ *
+ * @param {{vehicleToEdit: import("../../models/index.js").Vehicle}} props
+ * @returns
+ */
+const VehicleFormScreen = ({ vehicleToEdit }) => {
+  const initialValues = !vehicleToEdit
+    ? {
+        type: Car.name,
+        model: "",
+        color: getRandomColor(),
+        traction: Vehicle.TRACTION.soft,
+        speeds: [4, 12],
+      }
+    : {
+        type: vehicleToEdit.constructor.name,
+        model: vehicleToEdit.model,
+        color: vehicleToEdit.color,
+        traction: vehicleToEdit.traction,
+        speeds: [vehicleToEdit.minMoves, vehicleToEdit.maxMoves],
+      };
+
   const form = useForm({
     mode: "controlled",
-    initialValues: {
-      type: Car.name,
-      model: "",
-      color: getRandomColor(),
-      traction: Vehicle.TRACTION.soft,
-      speeds: [4, 12],
-    },
-    validate: zodResolver(vehicleFormSchema),
+    initialValues,
+    validate: zodResolver(vehicleFormSchema(vehicleToEdit)),
   });
 
   const vehicleProperties = {
@@ -50,10 +65,14 @@ const VehicleNew = () => {
       ? new Car(vehicleProperties)
       : new Bike(vehicleProperties);
 
+  if (vehicleToEdit) vehicle.setId(vehicleToEdit.id);
+
   const navigate = useNavigate();
   const addVehicle = useEntitiesState((s) => s.addVehicle);
-  const handleAddVehicles = () => {
-    addVehicle(vehicle);
+  const editVehicle = useEntitiesState((s) => s.updateVehicle);
+  const handleOnSubmit = () => {
+    if (vehicleToEdit) editVehicle(vehicle);
+    else addVehicle(vehicle);
     navigate("/vehicles");
   };
 
@@ -66,14 +85,14 @@ const VehicleNew = () => {
         </Button>
       </Link>
       <Flex w="100%" gap={"xl"}>
-        <VehicleForm form={form} onSubmit={handleAddVehicles} />
+        <VehicleForm form={form} onSubmit={handleOnSubmit} />
         <VehiclePreview vehicle={vehicle} />
       </Flex>
     </Stack>
   );
 };
 
-export default VehicleNew;
+export default VehicleFormScreen;
 
 /**
  *

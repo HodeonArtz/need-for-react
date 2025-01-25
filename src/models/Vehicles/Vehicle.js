@@ -68,6 +68,10 @@ export default class Vehicle {
     return getRandomNumber(this.minMoves, this.maxMoves);
   }
 
+  setId(id) {
+    this.#id = id;
+  }
+
   get id() {
     return this.#id;
   }
