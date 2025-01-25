@@ -104,7 +104,9 @@ const VehicleDataTable = ({ vehicle }) => {
         <Table.Tr>
           <Table.Th w={100}>Color</Table.Th>
           <Table.Td>
-            <Badge color={vehicle.color}>{closest(vehicle.color).name}</Badge>
+            <Badge autoContrast color={vehicle.color}>
+              {closest(vehicle.color).name}
+            </Badge>
           </Table.Td>
         </Table.Tr>
 
@@ -124,8 +126,4 @@ const VehicleDataTable = ({ vehicle }) => {
       </Table.Tbody>
     </Table>
   );
-};
-
-const ColorBadge = ({ color }) => {
-  return <Badge color={color}>{closest(color).name}</Badge>;
 };
