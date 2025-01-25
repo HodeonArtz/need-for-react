@@ -1,15 +1,12 @@
 import {
+  BackgroundImage,
   Button,
   Center,
   ColorInput,
-  Group,
-  Input,
-  InputLabel,
-  NativeSelect,
+  Flex,
   RangeSlider,
   SegmentedControl,
   Stack,
-  Text,
   TextInput,
   Title,
 } from "@mantine/core";
@@ -20,6 +17,9 @@ import { Link } from "react-router-dom";
 import { Bike, Car, Vehicle } from "../../../models";
 import { colorSwatch, firstLetterUppercase } from "../../../utils";
 import Labeler from "../../../components/Labeler";
+import backgroundVehicle from "../../../assets/png/background-landscape.png";
+import CarRender from "../../../components/Vehicles/CarRender";
+import BikeRender from "../../../components/Vehicles/BikeRender";
 
 const VehicleNew = () => {
   return (
@@ -30,9 +30,20 @@ const VehicleNew = () => {
           Go back
         </Button>
       </Link>
-      <Group>
+      <Flex w="100%" gap={"xl"}>
         <VehicleForm />
-      </Group>
+        <VehiclePreview
+          vehicle={
+            new Car({
+              color: "#E9ECEF",
+              minMoves: 6,
+              maxMoves: 10,
+              model: "BMW Serie 3",
+              traction: "high",
+            })
+          }
+        />
+      </Flex>
     </Stack>
   );
 };
@@ -112,5 +123,31 @@ const VehicleForm = () => {
         </Button>
       </Stack>
     </form>
+  );
+};
+const VehiclePreview = ({ vehicle }) => {
+  return (
+    <BackgroundImage
+      src={backgroundVehicle}
+      style={{
+        backgroundPositionY: "96%",
+        justifyContent: "end",
+        alignItems: "stretch",
+        display: "flex",
+        flexDirection: "column",
+      }}
+      bgsz="300%"
+      pos={"relative"}
+      maw="70%"
+    >
+      <Flex justify={"center"} align={"end"} h={"50%"} p={"lg"} pb={"13%"}>
+        {vehicle.constructor.name === Car.name && (
+          <CarRender color={vehicle.color} width={"100%"} />
+        )}
+        {vehicle.constructor.name === Bike.name && (
+          <BikeRender color={vehicle.color} width={"100%"} height={"100%"} />
+        )}
+      </Flex>
+    </BackgroundImage>
   );
 };

@@ -1,7 +1,7 @@
-export const BikeRender = ({ color, height }) => {
+export const BikeRender = ({ color, height, width }) => {
   return (
     <svg
-      style={{ height }}
+      style={{ height, width }}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       version="1.1"
