@@ -1,9 +1,7 @@
 import {
   ActionIcon,
-  BackgroundImage,
   Badge,
   Card,
-  Flex,
   Group,
   Table,
   Title,
@@ -11,14 +9,11 @@ import {
   Transition,
 } from "@mantine/core";
 import { closest } from "color-2-name";
-import backgroundVehicle from "../../assets/png/background-landscape.png";
-import { Bike, Car } from "../../models";
-import BikeRender from "./BikeRender";
-import CarRender from "./CarRender";
 import { firstLetterUppercase } from "../../utils";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { useHover } from "@mantine/hooks";
 import { useEntitiesState } from "../../hooks/useEntitiesState";
+import { VehiclePreview } from "./VehiclePreview";
 
 /**
  * @param {{vehicle: import("../../models/Vehicles/Vehicle").default}} props
@@ -42,26 +37,6 @@ const VehicleCard = ({ vehicle }) => {
 };
 
 export default VehicleCard;
-
-const VehiclePreview = ({ vehicle }) => {
-  return (
-    <BackgroundImage
-      src={backgroundVehicle}
-      style={{ backgroundPositionY: "96%" }}
-      bgsz={500}
-      pos={"relative"}
-    >
-      <Flex w="100%" justify={"center"} align={"end"} p={"lg"}>
-        {vehicle.constructor.name === Car.name && (
-          <CarRender color={vehicle.color} width={"100%"} />
-        )}
-        {vehicle.constructor.name === Bike.name && (
-          <BikeRender color={vehicle.color} height={"100px"} />
-        )}
-      </Flex>
-    </BackgroundImage>
-  );
-};
 
 const VehicleActionButtons = ({ mounted, vehicleId }) => {
   const deleteVehicle = useEntitiesState((s) => s.deleteVehicle);
