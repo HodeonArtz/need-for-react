@@ -78,14 +78,18 @@ const VehicleFormScreen = ({ vehicleToEdit }) => {
 
   return (
     <Stack align="start">
-      <Title size="h2">Add new vehicle</Title>
+      <Title size="h2">{vehicleToEdit ? "Edit" : "Add new"} vehicle</Title>
       <Link to="/vehicles">
         <Button variant="subtle" leftSection={<IconArrowLeft />}>
           Go back
         </Button>
       </Link>
       <Flex w="100%" gap={"xl"}>
-        <VehicleForm form={form} onSubmit={handleOnSubmit} />
+        <VehicleForm
+          form={form}
+          onSubmit={handleOnSubmit}
+          buttonLabel={`${vehicleToEdit ? "Edit" : "Add"} vehicle`}
+        />
         <VehiclePreview vehicle={vehicle} />
       </Flex>
     </Stack>
@@ -99,7 +103,7 @@ export default VehicleFormScreen;
  * @param {{form : import("@mantine/form").UseFormReturnType, onSubmit: Function }} props
  * @returns
  */
-const VehicleForm = ({ form, onSubmit }) => {
+const VehicleForm = ({ form, onSubmit, buttonLabel }) => {
   return (
     <form onSubmit={form.onSubmit(onSubmit)}>
       <Stack>
@@ -176,7 +180,7 @@ const VehicleForm = ({ form, onSubmit }) => {
           gradient={{ from: "indigo", to: "blue", deg: 360 }}
           type="sumbit"
         >
-          Add vehicle
+          {buttonLabel}
         </Button>
       </Stack>
     </form>
