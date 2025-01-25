@@ -36,6 +36,10 @@ export default class Racetrack {
     this.trackLengthKm = trackLengthKm * 15;
   }
 
+  setId(id) {
+    this.#id = id;
+  }
+
   get id() {
     return this.#id;
   }
