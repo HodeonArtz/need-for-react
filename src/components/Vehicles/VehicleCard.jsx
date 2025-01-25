@@ -7,6 +7,7 @@ import {
   Group,
   Table,
   Title,
+  Tooltip,
   Transition,
 } from "@mantine/core";
 import { closest } from "color-2-name";
@@ -79,19 +80,23 @@ const VehicleActionButtons = ({ mounted, vehicleId }) => {
           top={10}
           style={styles}
         >
-          <ActionIcon variant="default" size="md" aria-label="Gallery">
-            <IconPencil size={20} stroke={1.5} />
-          </ActionIcon>
+          <Tooltip label="Edit vehicle" color="dark" position="left">
+            <ActionIcon variant="default" size="md" aria-label="Gallery">
+              <IconPencil size={20} stroke={1.5} />
+            </ActionIcon>
+          </Tooltip>
 
-          <ActionIcon
-            c="red"
-            variant="default"
-            size="md"
-            aria-label="Settings"
-            onClick={() => deleteVehicle(vehicleId)}
-          >
-            <IconTrash size={20} stroke={1.5} />
-          </ActionIcon>
+          <Tooltip label="Delete vehicle" color="red" position="left">
+            <ActionIcon
+              c="red"
+              variant="default"
+              size="md"
+              aria-label="Settings"
+              onClick={() => deleteVehicle(vehicleId)}
+            >
+              <IconTrash size={20} stroke={1.5} />
+            </ActionIcon>
+          </Tooltip>
         </ActionIcon.Group>
       )}
     </Transition>
