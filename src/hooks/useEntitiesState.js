@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { Bike, Car, Driver, Vehicle } from "../models";
 import { defaultVehicles } from "../db/vehicles";
+import { Driver } from "../models";
 
 /**
  * @typedef {import("../models/Participant/Driver").default} Driver

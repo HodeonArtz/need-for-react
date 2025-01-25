@@ -56,7 +56,7 @@ const VehiclesList = () => {
         </Stack>
       </Modal>
       <Stack>
-        <Title size="h2">Car Lot</Title>
+        <Title size="h2">My Garage</Title>
         <Group>
           <Link to="/vehicles/new">
             <Button leftSection={<IconPlus stroke={2} />} variant="filled">
@@ -88,7 +88,7 @@ const VehiclesList = () => {
             ))}
           </Masonry>
         ) : (
-          <Text>No cars in the car lot yet...</Text>
+          <Text>No vehicles in the garage yet...</Text>
         )}
       </Stack>
     </>

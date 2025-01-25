@@ -25,9 +25,9 @@ const NavBar = () => {
             <NavLink to="/" className="font-bold text-2xl">
               🏁 Play
             </NavLink>
-            <NavLink to="/vehicles">🚗 Vehicles</NavLink>
+            <NavLink to="/vehicles">🚗 Garage</NavLink>
             <NavLink to="/drivers">🧑 Drivers</NavLink>
-            <NavLink to="/racetracks">🚥 Circuits</NavLink>
+            <NavLink to="/racetracks">🚥 Racetracks</NavLink>
           </Flex>
         </Flex>
       </Container>

@@ -3,14 +3,14 @@ import { Bike, Car } from "../models";
 // List of default vehicles
 export const defaultVehicles = [
   new Bike({
-    color: "#f1c40f",
+    color: "#696969",
     minMoves: 3,
     maxMoves: 6,
     model: "Ducati Scrambler",
     traction: "medium",
   }),
   new Car({
-    color: "#9b59b6",
+    color: "#E9ECEF",
     minMoves: 6,
     maxMoves: 10,
     model: "BMW Serie 3",
