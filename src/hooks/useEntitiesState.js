@@ -37,7 +37,7 @@ export const useEntitiesState = create(
       })),
 
     addVehicle: (vehicle) =>
-      set((entities) => ({ vehicles: [...entities.vehicles, vehicle] })),
+      set((entities) => ({ vehicles: [vehicle, ...entities.vehicles] })),
     updateVehicle: (updatedVehicle) =>
       set((entities) => ({
         vehicles: entities.vehicles.map((vehicle) =>

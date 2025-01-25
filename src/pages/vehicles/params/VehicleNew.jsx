@@ -13,15 +13,54 @@ import {
 import { IconArrowLeft, IconCar, IconMotorbike } from "@tabler/icons-react";
 
 import "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Bike, Car, Vehicle } from "../../../models";
-import { colorSwatch, firstLetterUppercase } from "../../../utils";
+import {
+  colorSwatch,
+  firstLetterUppercase,
+  getRandomColor,
+} from "../../../utils";
 import Labeler from "../../../components/Labeler";
 import backgroundVehicle from "../../../assets/png/background-landscape.png";
 import CarRender from "../../../components/Vehicles/CarRender";
 import BikeRender from "../../../components/Vehicles/BikeRender";
+import { useForm, zodResolver } from "@mantine/form";
+import { vehicleFormSchema } from "../../../schemas/vehicleFormValidation";
+import { useEntitiesState } from "../../../hooks/useEntitiesState";
 
 const VehicleNew = () => {
+  const form = useForm({
+    mode: "controlled",
+    initialValues: {
+      type: Car.name,
+      model: "",
+      color: getRandomColor(),
+      traction: Vehicle.TRACTION.soft,
+      speeds: [4, 12],
+    },
+    validate: zodResolver(vehicleFormSchema),
+  });
+
+  const vehicleProperties = {
+    color: form.values.color,
+    minMoves: form.values.speeds[0],
+    maxMoves: form.values.speeds[1],
+    model: form.values.model,
+    traction: form.values.traction,
+  };
+
+  const vehicle =
+    form.values.type === Car.name
+      ? new Car(vehicleProperties)
+      : new Bike(vehicleProperties);
+
+  const navigate = useNavigate();
+  const addVehicle = useEntitiesState((s) => s.addVehicle);
+  const handleAddVehicles = () => {
+    addVehicle(vehicle);
+    navigate("/vehicles");
+  };
+
   return (
     <Stack align="start">
       <Title size="h2">Add new vehicle</Title>
@@ -31,18 +70,8 @@ const VehicleNew = () => {
         </Button>
       </Link>
       <Flex w="100%" gap={"xl"}>
-        <VehicleForm />
-        <VehiclePreview
-          vehicle={
-            new Car({
-              color: "#E9ECEF",
-              minMoves: 6,
-              maxMoves: 10,
-              model: "BMW Serie 3",
-              traction: "high",
-            })
-          }
-        />
+        <VehicleForm form={form} onSubmit={handleAddVehicles} />
+        <VehiclePreview vehicle={vehicle} />
       </Flex>
     </Stack>
   );
@@ -50,9 +79,14 @@ const VehicleNew = () => {
 
 export default VehicleNew;
 
-const VehicleForm = () => {
+/**
+ *
+ * @param {{form : import("@mantine/form").UseFormReturnType, onSubmit: Function }} props
+ * @returns
+ */
+const VehicleForm = ({ form, onSubmit }) => {
   return (
-    <form>
+    <form onSubmit={form.onSubmit(onSubmit)}>
       <Stack>
         <Labeler label="Select a type">
           <SegmentedControl
@@ -77,14 +111,19 @@ const VehicleForm = () => {
               },
             ]}
             defaultChecked
+            {...form.getInputProps("type")}
           />
         </Labeler>
-        <TextInput label="Model" placeholder="Enter your {VEHICLE} model" />
+        <TextInput
+          label="Model"
+          placeholder={`Enter your ${form.values.type.toLowerCase()} model`}
+          {...form.getInputProps("model")}
+        />
         <ColorInput
           format="hex"
           swatches={colorSwatch}
           label="Color"
-          defaultValue="#ffffff"
+          {...form.getInputProps("color")}
         />
         <Labeler label="Traction">
           <SegmentedControl
@@ -103,21 +142,24 @@ const VehicleForm = () => {
               },
             ]}
             defaultChecked
+            {...form.getInputProps("traction")}
           />
         </Labeler>
-        <Labeler label="Speed" gap="3px">
+        <Labeler label="Speeds" gap="3px">
           <RangeSlider
             minRange={1}
             min={1}
             max={15}
             step={1}
             label={(value) => `${value} moves`}
+            {...form.getInputProps("speeds")}
           />
         </Labeler>
         <Button
           mt={10}
           variant="gradient"
           gradient={{ from: "indigo", to: "blue", deg: 360 }}
+          type="sumbit"
         >
           Add vehicle
         </Button>
@@ -131,21 +173,19 @@ const VehiclePreview = ({ vehicle }) => {
       src={backgroundVehicle}
       style={{
         backgroundPositionY: "96%",
-        justifyContent: "end",
-        alignItems: "stretch",
-        display: "flex",
-        flexDirection: "column",
       }}
       bgsz="300%"
-      pos={"relative"}
       maw="70%"
+      p={"xl"}
+      pb={"8%"}
+      radius={"lg"}
     >
-      <Flex justify={"center"} align={"end"} h={"50%"} p={"lg"} pb={"13%"}>
+      <Flex justify={"center"} align={"end"} h={"100%"}>
         {vehicle.constructor.name === Car.name && (
           <CarRender color={vehicle.color} width={"100%"} />
         )}
         {vehicle.constructor.name === Bike.name && (
-          <BikeRender color={vehicle.color} width={"100%"} height={"100%"} />
+          <BikeRender color={vehicle.color} height={200} />
         )}
       </Flex>
     </BackgroundImage>

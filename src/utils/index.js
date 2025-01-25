@@ -36,3 +36,6 @@ export const colorSwatch = [
   "#fab005",
   "#fd7e14",
 ];
+
+export const getRandomColor = () =>
+  colorSwatch[Math.floor(getRandomNumber(0, colorSwatch.length - 1))];
