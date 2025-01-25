@@ -3,13 +3,15 @@ import {
   Badge,
   Card,
   Group,
+  RangeSlider,
+  SegmentedControl,
   Table,
   Title,
   Tooltip,
   Transition,
 } from "@mantine/core";
 import { closest } from "color-2-name";
-import { firstLetterUppercase } from "../../utils";
+
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { useHover } from "@mantine/hooks";
 import { useEntitiesState } from "../../hooks/useEntitiesState";
@@ -92,7 +94,7 @@ const VehicleDataTable = ({ vehicle }) => {
         <Table.Tr>
           <Table.Th w={100}>Color</Table.Th>
           <Table.Td>
-            <Badge autoContrast color={vehicle.color}>
+            <Badge autoContrast color={vehicle.color} size="sm" fullWidth>
               {closest(vehicle.color).name}
             </Badge>
           </Table.Td>
@@ -100,16 +102,39 @@ const VehicleDataTable = ({ vehicle }) => {
 
         <Table.Tr>
           <Table.Th>Traction</Table.Th>
-          <Table.Td>{firstLetterUppercase(vehicle.traction)}</Table.Td>
+          <Table.Td>
+            <SegmentedControl
+              data={["soft", "medium", "high"]}
+              defaultValue={vehicle.traction.toLowerCase()}
+              readOnly
+              fullWidth
+              size="xs"
+              radius={"lg"}
+            />
+          </Table.Td>
         </Table.Tr>
 
         <Table.Tr>
-          <Table.Th>Min. Speed</Table.Th>
-          <Table.Td>{vehicle.maxMoves} moves</Table.Td>
-        </Table.Tr>
-        <Table.Tr>
-          <Table.Th>Max Speed</Table.Th>
-          <Table.Td>{vehicle.minMoves} moves</Table.Td>
+          <Table.Th>Speed</Table.Th>
+          <Table.Td>
+            <RangeSlider
+              size="sm"
+              color="indigo"
+              value={[vehicle.minMoves, vehicle.maxMoves]}
+              minRange={0}
+              step={1}
+              min={0}
+              max={15}
+              marks={[
+                { value: 0, label: "0" },
+                { value: 3, label: "3" },
+                { value: 6, label: "6" },
+                { value: 9, label: "9" },
+                { value: 12, label: "12" },
+                { value: 15, label: "15" },
+              ]}
+            />
+          </Table.Td>
         </Table.Tr>
       </Table.Tbody>
     </Table>
