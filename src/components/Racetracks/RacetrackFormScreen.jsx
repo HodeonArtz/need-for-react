@@ -1,4 +1,5 @@
 import {
+  BackgroundImage,
   Button,
   Center,
   Flex,
@@ -19,6 +20,7 @@ const RacetrackFormScreen = () => {
   return (
     <Flex w="100%" gap={"xl"}>
       <RacetrackForm />
+      <WeatherPreview weatherImg={weatherMap[0].preview} />
     </Flex>
   );
 };
@@ -74,4 +76,8 @@ export const RacetrackForm = () => {
       </Button>
     </Stack>
   );
+};
+
+const WeatherPreview = ({ weatherImg }) => {
+  return <BackgroundImage radius={"md"} src={weatherImg} w="70%" />;
 };
