@@ -8,6 +8,7 @@ import DriverNew from "./pages/drivers/params/DriverNew.jsx";
 import RacetrackNew from "./pages/racetracks/params/RacetrackNew.jsx";
 import VehicleEdit from "./pages/vehicles/params/VehicleEdit.jsx";
 import RacetrackEdit from "./pages/racetracks/params/RacetrackEdit.jsx";
+import DriverEdit from "./pages/drivers/params/DriverEdit.jsx";
 
 /**
  * @type {import("react-router-dom").RouteObject[]}
@@ -23,6 +24,7 @@ const routes = [
       { path: "vehicles/:id/edit", element: <VehicleEdit /> },
       { path: "drivers", element: <DriversList /> },
       { path: "drivers/new", element: <DriverNew /> },
+      { path: "drivers/:id/edit", element: <DriverEdit /> },
       { path: "racetracks", element: <RacetracksList /> },
       { path: "racetracks/new", element: <RacetrackNew /> },
       { path: "racetracks/:id/edit", element: <RacetrackEdit /> },
