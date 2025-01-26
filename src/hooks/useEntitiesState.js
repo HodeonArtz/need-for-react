@@ -56,7 +56,10 @@ export const useEntitiesState = create(
       set((entities) => ({
         vehicles: entities.vehicles.filter((vehicle) => vehicle.id !== id),
         drivers: entities.drivers.map((driver) => {
-          if (driver.vehicleId.toLowerCase() === id.toLowerCase()) {
+          if (
+            driver.vehicleId &&
+            driver.vehicleId.toLowerCase() === id.toLowerCase()
+          ) {
             const newDriver = new Driver({ ...driver });
             newDriver.setId(driver.id);
             return newDriver;
