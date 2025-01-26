@@ -9,7 +9,7 @@ const VehicleEdit = () => {
   const vehicles = useEntitiesState((s) => s.vehicles);
   const foundVehicle = vehicles.find((vehicle) => vehicle.id === vehicleId);
   if (!foundVehicle) {
-    navigate("/");
+    navigate("/vehicles");
     return null;
   }
   return <VehicleFormScreen vehicleToEdit={foundVehicle} />;

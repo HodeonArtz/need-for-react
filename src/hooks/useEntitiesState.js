@@ -52,7 +52,7 @@ export const useEntitiesState = create(
       })),
 
     addRacetrack: (racetrack) =>
-      set((entities) => ({ racetracks: [...entities.racetracks, racetrack] })),
+      set((entities) => ({ racetracks: [racetrack, ...entities.racetracks] })),
     updateRacetrack: (updatedRacetrack) =>
       set((entities) => ({
         racetracks: entities.racetracks.map((racetrack) =>
