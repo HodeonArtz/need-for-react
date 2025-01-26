@@ -64,6 +64,10 @@ export default class Driver {
     this.avatar = avatar;
   }
 
+  setId(id) {
+    this.#id = id;
+  }
+
   get id() {
     return this.#id;
   }
