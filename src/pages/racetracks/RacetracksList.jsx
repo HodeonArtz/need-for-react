@@ -10,19 +10,12 @@ import {
   Tooltip,
 } from "@mantine/core";
 
-import { Racetrack } from "../../models";
-import {
-  IconCloudRain,
-  IconDroplet,
-  IconPencil,
-  IconPlus,
-  IconSun,
-  IconTrash,
-} from "@tabler/icons-react";
+import { IconPencil, IconPlus, IconTrash } from "@tabler/icons-react";
 import { firstLetterUppercase } from "../../utils";
 import { useEntitiesState } from "../../hooks/useEntitiesState";
 import { useDisclosure } from "@mantine/hooks";
 import { Link, useNavigate } from "react-router-dom";
+import { weatherMap } from "../../components/Racetracks/weatherMap";
 
 const RacetracksList = () => {
   const clearRacetracks = useEntitiesState((state) => state.clearRacetracks);
@@ -104,16 +97,6 @@ const RacetracksList = () => {
 
 export default RacetracksList;
 
-const weatherMap = [
-  { weather: Racetrack.WEATHER.dry, icon: <IconSun />, color: "yellow" },
-  { weather: Racetrack.WEATHER.wet, icon: <IconDroplet />, color: "cyan" },
-  {
-    weather: Racetrack.WEATHER.rainy,
-    icon: <IconCloudRain />,
-    color: "indigo",
-  },
-];
-
 /**
  *
  * @param {{racetrack: import("../../models/index").Racetrack}} props
@@ -134,7 +117,7 @@ const RacetrackCardLine = ({ racetrack }) => {
         color={weatherMapInstance.color}
       >
         <ActionIcon size={"lg"} color={weatherMapInstance.color}>
-          {weatherMapInstance.icon}
+          {<weatherMapInstance.icon />}
         </ActionIcon>
       </Tooltip>
       <Stack style={{ flexGrow: 1 }} gap={"xs"}>
