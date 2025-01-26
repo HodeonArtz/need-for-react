@@ -89,9 +89,13 @@ const RacetracksList = () => {
           )}
         </Group>
         <Stack>
-          {racetracks.map((racetrack) => (
-            <RacetrackCardLine racetrack={racetrack} key={racetrack.id} />
-          ))}
+          {racetracks.length ? (
+            racetracks.map((racetrack) => (
+              <RacetrackCardLine racetrack={racetrack} key={racetrack.id} />
+            ))
+          ) : (
+            <Text>No racetracks yet...</Text>
+          )}
         </Stack>
       </Stack>
     </>
