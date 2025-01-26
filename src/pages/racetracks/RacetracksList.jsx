@@ -101,7 +101,7 @@ export default RacetracksList;
  *
  * @param {{racetrack: import("../../models/index").Racetrack}} props
  */
-const RacetrackCardLine = ({ racetrack }) => {
+export const RacetrackCardLine = ({ racetrack, hideActionButtons = false }) => {
   const deleteRacetrack = useEntitiesState((state) => state.deleteRacetrack);
   const navigate = useNavigate();
 
@@ -142,27 +142,29 @@ const RacetrackCardLine = ({ racetrack }) => {
           label={(value) => `${value} km`}
         />
       </Stack>
-      <ActionIcon.Group orientation="vertical">
-        <Tooltip position="right-end" color="gray" label="Edit Racetrack">
-          <ActionIcon
-            onClick={() => navigate(`/racetracks/${racetrack.id}/edit`)}
-            size={"md"}
-            color="gray"
-          >
-            <IconPencil size={20} stroke={1.5} />
-          </ActionIcon>
-        </Tooltip>
-        <Tooltip position="right-start" color="red" label="Delete Racetrack">
-          <ActionIcon
-            size={"md"}
-            color="red"
-            variant="outline"
-            onClick={() => deleteRacetrack(racetrack.id)}
-          >
-            <IconTrash size={20} stroke={1.5} />
-          </ActionIcon>
-        </Tooltip>
-      </ActionIcon.Group>
+      {!hideActionButtons && (
+        <ActionIcon.Group orientation="vertical">
+          <Tooltip position="right-end" color="gray" label="Edit Racetrack">
+            <ActionIcon
+              onClick={() => navigate(`/racetracks/${racetrack.id}/edit`)}
+              size={"md"}
+              color="gray"
+            >
+              <IconPencil size={20} stroke={1.5} />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip position="right-start" color="red" label="Delete Racetrack">
+            <ActionIcon
+              size={"md"}
+              color="red"
+              variant="outline"
+              onClick={() => deleteRacetrack(racetrack.id)}
+            >
+              <IconTrash size={20} stroke={1.5} />
+            </ActionIcon>
+          </Tooltip>
+        </ActionIcon.Group>
+      )}
     </Group>
   );
 };
