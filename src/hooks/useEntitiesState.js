@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { defaultVehicles } from "../db/vehicles";
 import { Driver } from "../models";
+import { defaultRacetracks } from "../db/racetracks";
 
 /**
  * @typedef {import("../models/Participant/Driver").default} Driver
@@ -19,9 +20,10 @@ export const useEntitiesState = create(
   (set) => ({
     drivers: [new Driver({ name: "Juan" })],
     vehicles: [...defaultVehicles],
-    racetracks: [],
+    racetracks: [...defaultRacetracks],
 
     clearVehicles: () => set(() => ({ vehicles: [] })),
+    clearRacetracks: () => set(() => ({ racetracks: [] })),
 
     addDriver: (driver) =>
       set((entities) => ({ drivers: [...entities.drivers, driver] })),

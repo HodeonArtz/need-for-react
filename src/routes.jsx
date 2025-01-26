@@ -24,6 +24,7 @@ const routes = [
       { path: "drivers/new", element: <DriverNew /> },
       { path: "racetracks", element: <RacetracksList /> },
       { path: "racetracks/new", element: <RacetrackNew /> },
+      { path: "racetracks/:id/edit", element: <RacetrackNew /> },
     ],
   },
 ];

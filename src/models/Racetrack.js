@@ -33,7 +33,7 @@ export default class Racetrack {
     this.#id = v4();
     this.name = name;
     this.weather = weather;
-    this.trackLengthKm = trackLengthKm * 15;
+    this.trackLengthKm = trackLengthKm;
   }
 
   setId(id) {
