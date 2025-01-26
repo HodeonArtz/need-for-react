@@ -11,7 +11,7 @@ const Logo = () => {
 
 const NavBar = () => {
   return (
-    <Box className="border-b-2">
+    <Box bg="dark">
       <Container>
         <Flex gap="lg" className="py-3">
           <Logo />
